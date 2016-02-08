@@ -1,6 +1,7 @@
 {
   "name": "thetwittosphere_api",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "node-twitter-api": "^1.7.0"
   }
 }
