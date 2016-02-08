@@ -5,6 +5,7 @@ var app = express();
 var twitter = require('./twitter_route.js');
 
 app.get('/api/tweetsbyuser', twitter.getTweetsByUser);
+app.post('/api/posttweet', twitter.update);
 app.get('/api/mocktweets', twitter.mockTweets);
 
 app.listen(3000, function () {
