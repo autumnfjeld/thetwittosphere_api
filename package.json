@@ -1,0 +1,6 @@
+{
+  "name": "thetwittosphere_api",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
