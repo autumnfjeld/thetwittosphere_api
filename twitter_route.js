@@ -1,6 +1,8 @@
-var twitterAPI = require('node-twitter-api');
+var twitterAPI = require('node-twitter-api'),
+    util = require('util');
 
 exports.mockTweets = mockTweets;
+exports.getTweetsByUser = getTweetsByUser;
 
 var twitter = new twitterAPI({
   consumerKey: "ATwRHfjXNiI3dSjzAsgFxATM3",
@@ -18,9 +20,18 @@ twitter.verifyCredentials(config.accessToken, config.accessTokenSecret, function
   if (error) {
     console.log('ERROR: verifyCredentials', error);
   } else {
-    console.log(data["screen_name"], data);
+    console.log(data["screen_name"]);
   }
 });
+
+
+//testing with http://localhost:3000/api/tweetsbyuser?screen_name=7x7
+function getTweetsByUser(req, res){
+  console.log('req', util.inspect(req.query));
+  var screen_name = req.query.screen_name;
+  // var screen_name
+  res.json('got that query! ' + screen_name);
+}
 
 function mockTweets(req, res){
   res.json([
