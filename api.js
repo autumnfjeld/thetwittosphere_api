@@ -17,9 +17,9 @@ var allowCrossDomain = function(req, res, next) {
 
 app.use(allowCrossDomain);
 
-app.get('/api/tweetsbyuser', twitter.getTweetsByUser);
-app.post('/api/posttweet', twitter.update);
+app.get('/api/usertimeline', twitter.getUserTimeline);
 app.get('/api/mocktweets', twitter.mockTweets);
+// app.post('/api/posttweet', twitter.update);
 
 app.listen(3000, function () {
   console.log('Server listening on', 3000)   //check on localhost:3000/api/routexxx
