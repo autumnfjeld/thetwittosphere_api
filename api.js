@@ -18,6 +18,7 @@ var allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 
 app.get('/api/usertimeline', twitter.getUserTimeline);
+app.get('/api/userprofile', twitter.getUserProfile);
 app.get('/api/mocktweets', twitter.mockTweets);
 // app.post('/api/posttweet', twitter.update);
 

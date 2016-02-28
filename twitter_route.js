@@ -3,6 +3,7 @@ var Twitter= require('twitter-js-client').Twitter,
 
 //Public methods
 exports.getUserTimeline = getUserTimeline;
+exports.getUserProfile = getUserProfile;
 exports.mockTweets = mockTweets;
 // exports.update = update;
 
@@ -23,13 +24,28 @@ function getUserTimeline(req, res){
   twitter.getUserTimeline({ screen_name: screenName, count: 10}, errorTimeline, successTimeline);
 
   function errorTimeline(err, response, body) {
-    console.log('ERROR: twitter_route2.getUserTimeline(): [%s]', err);
+    console.log('ERROR: twitter_route.getUserTimeline(): [%s]', JSON.parse(err));
     return res.json(500);
   };
 
   function successTimeline (data) {
     return res.send(JSON.parse(data));
   };
+}
+
+function getUserProfile(req, res){
+  var screenName = req.params && req.params.screen_name;  //for testing
+  console.log('twitter_route.getUserTimeline: screen_name', screenName);  
+  twitter.getUser({screen_name: screenName}, errorUserProfile, successUserProfile);
+
+  function errorUserProfile(err, response, body) {
+    console.log('ERROR: twitter_route.getUserProfile(): [%s]', err);
+    return res.json(500);
+  };
+
+  function successUserProfile(data) {
+    return res.send(JSON.parse(data));
+  };  
 }
 
 // For Testing
