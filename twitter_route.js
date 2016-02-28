@@ -18,9 +18,9 @@ var config = {
 var twitter = new Twitter(config);
 
 function getUserTimeline(req, res){
-  var screenName = (req.body && req.body.screen_name) || 'autaut';  //for testing
-  console.log('in twitter_route2.getUserTimeline');
-  twitter.getUserTimeline({ screen_name: screenName, count: 2}, errorTimeline, successTimeline);
+  var screenName = req.params && req.params.screen_name;  //for testing
+  console.log('twitter_route.getUserTimeline: screen_name', screenName);
+  twitter.getUserTimeline({ screen_name: screenName, count: 10}, errorTimeline, successTimeline);
 
   function errorTimeline(err, response, body) {
     console.log('ERROR: twitter_route2.getUserTimeline(): [%s]', err);
@@ -28,9 +28,6 @@ function getUserTimeline(req, res){
   };
 
   function successTimeline (data) {
-    console.log('SUCCESS!');
-    console.log('First tweet', JSON.parse(data)[0]);
-    // return res.json(JSON.parse(data));
     return res.send(JSON.parse(data));
   };
 }
