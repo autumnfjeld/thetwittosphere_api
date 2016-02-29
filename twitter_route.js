@@ -11,20 +11,19 @@ exports.mockTweets = mockTweets;
 var config = {
   consumerKey: "ATwRHfjXNiI3dSjzAsgFxATM3",
   consumerSecret: "tz1UAZwf754Uovs2Up2lco61etgtheZ3xzCtTeGQhh59zEJ5FH",
-  accessToken: "27513075-ObsIk211WdFcMAiRiLF1gyUSmexKvcgSFGwuuKIYH",
-  accessTokenSecret: "DaB7A57v0UtmgVariGvzVFKeGyVE5SNVeXca9awVMGHwC",  
+  // accessToken: "27513075-ObsIk211WdFcMAiRiLF1gyUSmexKvcgSFGwuuKIYH",
+  // accessTokenSecret: "DaB7A57v0UtmgVariGvzVFKeGyVE5SNVeXca9awVMGHwC",  
   // callBackUrl: 'http://something'
   };
   
 var twitter = new Twitter(config);
 
 function getUserTimeline(req, res){
-  var screenName = req.params && req.params.screen_name;  //for testing
-  console.log('twitter_route.getUserTimeline: screen_name', screenName);
-  twitter.getUserTimeline({ screen_name: screenName, count: 10}, errorTimeline, successTimeline);
+  console.log('getUserTimeline:  req.query', util.inspect(req.query));
+  twitter.getUserTimeline({ screen_name: req.query.screen_name, count: 10}, errorTimeline, successTimeline);
 
   function errorTimeline(err, response, body) {
-    console.log('ERROR: twitter_route.getUserTimeline(): [%s]', JSON.parse(err));
+    console.log('ERROR: twitter_route.getUserTimeline(): ', err);
     return res.json(500);
   };
 
@@ -34,12 +33,11 @@ function getUserTimeline(req, res){
 }
 
 function getUserProfile(req, res){
-  var screenName = req.params && req.params.screen_name;  //for testing
-  console.log('twitter_route.getUserTimeline: screen_name', screenName);  
-  twitter.getUser({screen_name: screenName}, errorUserProfile, successUserProfile);
+  console.log('getUserProfile:  req.query', util.inspect(req.query));
+  twitter.getUser({screen_name: req.query.screen_nam}, errorUserProfile, successUserProfile);
 
   function errorUserProfile(err, response, body) {
-    console.log('ERROR: twitter_route.getUserProfile(): [%s]', err);
+    console.log('ERROR: twitter_route.getUserProfile(): ', err);
     return res.json(500);
   };
 
