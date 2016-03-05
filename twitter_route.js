@@ -34,8 +34,8 @@ function getUserTimeline(req, res){
 
 function getUserProfile(req, res){
   console.log('getUserProfile:  req.query', util.inspect(req.query));
-  twitter.getUser({screen_name: req.query.screen_nam}, errorUserProfile, successUserProfile);
-
+  twitter.getUser({screen_name: req.query.screen_name}, errorUserProfile, successUserProfile);
+  
   function errorUserProfile(err, response, body) {
     console.log('ERROR: twitter_route.getUserProfile(): ', err);
     return res.json(500);
