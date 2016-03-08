@@ -1,14 +1,20 @@
 {
   "name": "thetwittosphere_api",
   "author": "Autumn Fjeld <autumn@autumn.buzz>",
-  "description": "Back end of full-stack project that searches for and returns twitter feed",
+  "description": "Back end of full-stack project that searches for and returns recents tweets feed",
   "repository": {
-    "type": "git"
+    "type": "git",
+    "url": "https://github.com/autumnfjeld/thetwittosphere_api"
   },
-  "scripts": {},
+  "scripts": {
+    "start": "node api.js"
+    },
   "dependencies": {
     "express": "^4.13.4",
     "twitter-js-client": "0.0.5",
     "util": "^0.10.3"
+  },
+  "engines": {
+    "node": "5.6.0"
   }
 }
