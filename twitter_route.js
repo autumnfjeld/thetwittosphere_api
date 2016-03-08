@@ -20,11 +20,11 @@ var twitter = new Twitter(config);
 
 function getUserTimeline(req, res){
   console.log('getUserTimeline:  req.query', util.inspect(req.query));
-  twitter.getUserTimeline({ screen_name: req.query.screen_name, count: 10}, errorTimeline, successTimeline);
+  twitter.getUserTimeline({ screen_name: req.query.screen_name, count: 50}, errorTimeline, successTimeline);
 
   function errorTimeline(err, response, body) {
     console.log('ERROR: twitter_route.getUserTimeline(): ', err);
-    return res.json(500);
+    return res.json(err);
   };
 
   function successTimeline (data) {
@@ -35,10 +35,10 @@ function getUserTimeline(req, res){
 function getUserProfile(req, res){
   console.log('getUserProfile:  req.query', util.inspect(req.query));
   twitter.getUser({screen_name: req.query.screen_name}, errorUserProfile, successUserProfile);
-  
+
   function errorUserProfile(err, response, body) {
     console.log('ERROR: twitter_route.getUserProfile(): ', err);
-    return res.json(500);
+    return res.json(err);
   };
 
   function successUserProfile(data) {
