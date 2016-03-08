@@ -3,6 +3,8 @@ var express = require('express'),
 
 var app = express();
 
+app.set('port', (process.env.PORT || 5000))
+
 var allowCrossDomain = function(req, res, next) {
   //simple CORS handling
   res.header('Access-Control-Allow-Origin', '*');
@@ -22,6 +24,6 @@ app.get('/api/userprofile', twitter.getUserProfile);
 app.get('/api/mocktweets', twitter.mockTweets);
 // app.post('/api/posttweet', twitter.update);
 
-app.listen(3000, function () {
-  console.log('Server listening on', 3000)   //check on localhost:3000/api/routexxx
+app.listen(app.get('port'), function () {
+  console.log('Server listening on', app.get('port'))   //check on localhost:3000/api/routexxx
 });
